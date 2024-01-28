@@ -18,20 +18,29 @@ pitchMotor.setVelocity(0.0)
 # The robot will start by going forward and will go backward after
 # this time interval, and so on.
 timeInterval = 1.5
-
+    
 # At first we go forward.
 pitchMotor.setVelocity(maxSpeed)
 forward = True
 lastTime = 0
 
+gyro = robot.getDevice("body gyro")
+gyro.enable(timestep)
+pitchMotor.setForce(10)
+pitchMotor.setTorque(10)
+
 while robot.step(timestep) != -1:
     now = robot.getTime()
+    if now>timeInterval:
+        pitchMotor.setForce(-10)
+        pitchMotor.setTorque(-10)
+        
     # We check if enough time has elapsed.
-    if now - lastTime > timeInterval:
+    #if now - lastTime > timeInterval:
         # If yes, then we switch directions.
-        if forward:
-            pitchMotor.setVelocity(-maxSpeed)
-        else:
-            pitchMotor.setVelocity(maxSpeed)
-        forward = not forward
-        lastTime = now
+        #if forward:
+            #pitchMotor.setVelocity(-maxSpeed)
+        #else:
+           # pitchMotor.setVelocity(maxSpeed)
+       # forward = not forward
+        #lastTime = now
