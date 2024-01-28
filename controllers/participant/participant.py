@@ -20,13 +20,13 @@ pitchMotor.setVelocity(0.0)
 timeInterval = 1.5
     
 # At first we go forward.
-pitchMotor.setVelocity(maxSpeed)
-forward = True
-lastTime = 0
+#pitchMotor.setVelocity(maxSpeed)
+#forward = True
+#lastTime = 0
 
 gyro = robot.getDevice("body gyro")
 gyro.enable(timestep)
-pitchMotor.setForce(10)
+pitchMotor.setForce(10) #max
 pitchMotor.setTorque(10)
 
 while robot.step(timestep) != -1:
